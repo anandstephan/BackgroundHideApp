@@ -11,8 +11,9 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.soloader.OpenSourceMergedSoMapping
 import com.facebook.soloader.SoLoader
-import com.karokeapp.ToastModulePackage
-
+import com.karokeapp.ToastPackage
+import com.karokeapp.HaltPackage
+import com.karokeapp.DisableButtonsPackage  // Import the module
 
 class MainApplication : Application(), ReactApplication {
 
@@ -20,9 +21,9 @@ class MainApplication : Application(), ReactApplication {
       object : DefaultReactNativeHost(this) {
         override fun getPackages(): List<ReactPackage> =
             PackageList(this).packages.apply {
-              add(ToastModulePackage())
-              // Packages that cannot be autolinked yet can be added manually here, for example:
-              // add(MyReactNativePackage())
+                add(ToastPackage())
+                add(HaltPackage())
+              add(BackButtonPackage()) // Adding the package correctly
             }
 
         override fun getJSMainModuleName(): String = "index"
